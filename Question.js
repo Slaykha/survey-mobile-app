@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const Question = ({ question }) => {
+const Question = ({ question, user }) => {
 
     const onClick = (options, option) => {
-        
+        user.responses.map(response => {
+            if(question.id != response.id){
+                
+            }
+        })
     }
 
     const persantageCalculator = (options, option) => {
@@ -26,7 +30,9 @@ const Question = ({ question }) => {
                 >
                     <View style={styles.optionsContainer}>
                         <Text>{option.optionText}</Text>
-                        <Text style={styles.percantages}>{persantageCalculator(question.options, option)}%</Text>
+                        {user.responses && (user.responses.map(response => (
+                            question.id === response.questionId && <Text style={styles.percantages}>{persantageCalculator(question.options, option)}%</Text>
+                        )))}
                     </View>
                 </TouchableOpacity>
             ))}
