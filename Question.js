@@ -35,6 +35,13 @@ const Question = ({ questions, question, user, setUser, setQuestions}) => {
         return ((option.responses / totalResponses) * 100).toFixed(1)
     }
 
+    const totalResponseCalculator = () => {
+        let totalResponses = 0 
+        question.options.map((option) => (totalResponses += option.responses))
+
+        return totalResponses
+    }
+
     return (
         <View style={styles.questionContainer}>
             <Text style={styles.questionText}>{question.questionText}</Text>
@@ -51,6 +58,7 @@ const Question = ({ questions, question, user, setUser, setQuestions}) => {
                     </View>
                 </TouchableOpacity>
             ))}
+            <Text style={styles.totalVotesText}>Total Votes: {totalResponseCalculator()}</Text>
         </View>
     );
   }
@@ -86,6 +94,11 @@ const styles = StyleSheet.create({
         flexDirection:"row"
     },
     percantages:{
+        marginLeft:"auto"
+    },
+    totalVotesText:{
+        fontSize: 12,
+        marginTop: 10,
         marginLeft:"auto"
     }
    
