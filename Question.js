@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const Question = ({ question, user }) => {
+const Question = ({ questions, question, user, setUser, setQuestions}) => {
 
-    const onClick = (options, option) => {
-        user.responses.map(response => {
-            if(question.id != response.id){
-                
+    const onClick = (option) => {
+        let isInclude = user.responses.some(response => response.questionId === question.id)
+
+        if(!isInclude){
+            editQuestionsResponses(option)
+            setUser(prevState => ({...prevState, responses: [...prevState.responses, {questionId: question.id, response: option.optionText}]}))
+        }
+    }
+
+    const editQuestionsResponses = (option) => {
+        let tempQuestions = questions
+        tempQuestions.map((tempQuestion) =>{
+            if(tempQuestion.id === question.id){
+                tempQuestion.options.map((tempOption) => {
+                    if(tempOption.optionText === option.optionText){
+                        tempOption.responses += 1
+                    }
+                })
             }
         })
+        setQuestions(tempQuestions)
     }
 
     const persantageCalculator = (options, option) => {
@@ -17,7 +32,7 @@ const Question = ({ question, user }) => {
             totalResponses += option.responses
         })
         if (totalResponses == 0) return 0 
-        return (option.responses / totalResponses) * 100
+        return ((option.responses / totalResponses) * 100).toFixed(1)
     }
 
     return (
@@ -25,8 +40,8 @@ const Question = ({ question, user }) => {
             <Text style={styles.questionText}>{question.questionText}</Text>
             {question.options.map(option => (
                 <TouchableOpacity
-                    style={styles.optionsButton}
-                    onPress={() => onClick(question.options, option)}
+                    style={(user ? user.responses.map(response => response.questionId === question.id ? (response.response === option.optionText ? styles.selectedButton : styles.optionsButton) : styles.optionsButton) : styles.optionsButton)}
+                    onPress={() => onClick(option)}
                 >
                     <View style={styles.optionsContainer}>
                         <Text>{option.optionText}</Text>
@@ -59,6 +74,13 @@ const styles = StyleSheet.create({
         marginBottom:5,
         borderWidth: 1,
         borderRadius: 5,
+    },
+    selectedButton: {
+        padding: 10,
+        marginBottom:5,
+        borderWidth: 1,
+        borderRadius: 5,
+        backgroundColor:"green"
     },
     optionsContainer:{
         flexDirection:"row"

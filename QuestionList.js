@@ -2,11 +2,11 @@ import React from 'react';
 import { View } from 'react-native';
 import Question from './Question';
 
-const QuestionList = ({ questions, user }) => {
+const QuestionList = ({ questions, user, setUser, setQuestions }) => {
     return (
       <View>
         {questions.map(question => (
-            <Question question={question} user={user}/>
+            <Question questions={questions} question={question} user={user} setUser={setUser} setQuestions={setQuestions}/>
         ))}
       </View>
     );
