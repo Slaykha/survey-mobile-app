@@ -1,11 +1,12 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { AuthProvider } from '../Auth/AuthProvider'
+import { AuthContext, AuthProvider } from '../Auth/AuthProvider'
 import QuestionList from '../poll/QuestionList'
 
 const userDef ={
     id: 1,
+    name:"Kadir",
     responses: [
       {
         questionId: 1,
@@ -41,6 +42,8 @@ export const HomeScreen = () => {
   const [user, setUser] = useState(userDef)
   const [questions, setQuestions] = useState(questionsDef)
 
+  const {logout} = useContext(AuthContext)
+
   const navigation = useNavigation()
 
   const createPoll = () => {
@@ -48,7 +51,20 @@ export const HomeScreen = () => {
   }
 
   return (
-    <View>
+    <View style={{paddingBottom:40}}>
+      <View style={{flex:0, flexDirection:"row", padding:5}}>
+        <Text style={{fontSize:18, fontWeight:"bold", top:40, left:10}}>{user.name}</Text>
+        <TouchableOpacity
+          style={{
+            top:40,
+            right:10,
+            marginLeft:"auto"
+          }}
+          onPress={logout}
+        >
+          <Text style={{fontSize:18, fontWeight:"bold"}}>Log Out</Text>
+        </TouchableOpacity>      
+      </View>
       <ScrollView style={{marginTop:50}}>
         <QuestionList questions={questions} user={user} setUser={setUser} setQuestions={setQuestions}/>
       </ScrollView>
@@ -62,7 +78,7 @@ export const HomeScreen = () => {
             alignItems:"center",
             justifyContent:"center",
             zIndex:99,
-            right:25,
+            right:15,
             top:"92%"
           }}
           onPress={createPoll}

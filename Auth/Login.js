@@ -20,6 +20,7 @@ const Login = () => {
 
     return (
         <View style={styles.loginContainer}>
+            <Text style={styles.loginText}>Login</Text>
             <TextInput
                 style={styles.textField}
                 placeholder="Email"
@@ -37,7 +38,7 @@ const Login = () => {
                 style={styles.loginButton}
                 onPress={login} 
             >
-                <Text style={styles.loginText}>Login</Text>
+                <Text style={styles.loginButtonText}>Login</Text>
             </TouchableOpacity>
         </View>
     );
@@ -45,7 +46,7 @@ const Login = () => {
 
 const styles = StyleSheet.create({
     loginContainer:{
-        marginTop:300
+        marginTop:200,
     },
     textField:{
         padding:10,
@@ -64,9 +65,16 @@ const styles = StyleSheet.create({
         backgroundColor:"#50C878",
         alignItems:"center"
     },
-    loginText:{
+    loginButtonText:{
         color:"white",
         fontSize:18
+    },
+    loginText:{
+        fontSize:32,
+        fontWeight:"bold",
+        margin: 50,
+        marginLeft:"auto",
+        marginRight:"auto",
     }
 });
 

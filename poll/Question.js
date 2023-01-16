@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
     questionContainer:{
         padding:20,
         margin:20,
+        marginTop:0,
         marginBottom:5,
-        marginTop:5,
         borderWidth:1,
         borderRadius:10,
         
