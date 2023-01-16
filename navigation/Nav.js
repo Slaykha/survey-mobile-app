@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from '../screens/LoginScreen';
 import { HomeScreen } from '../screens/HomeScreen';
-import Login from '../Auth/Login';
 import { AuthContext } from '../Auth/AuthProvider';
 import CreateNewPoll from '../poll/CreateNewPoll';
 

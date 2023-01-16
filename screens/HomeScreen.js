@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useContext, useState } from 'react'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { AuthContext, AuthProvider } from '../Auth/AuthProvider'
+import { AuthContext } from '../Auth/AuthProvider'
 import QuestionList from '../poll/QuestionList'
 
 const userDef ={
