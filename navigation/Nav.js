@@ -5,6 +5,7 @@ import LoginScreen from '../screens/LoginScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import Login from '../Auth/Login';
 import { AuthContext } from '../Auth/AuthProvider';
+import CreateNewPoll from '../poll/CreateNewPoll';
 
 const Stack = createStackNavigator()
 
@@ -14,9 +15,10 @@ const Nav = () => {
         <NavigationContainer>
             <Stack.Navigator>
                 {token === null
-                    ?<Stack.Screen name="Login" component={LoginScreen}/>
-                    :<Stack.Screen name="Home" component={HomeScreen}/>
+                    ?<Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}/>
+                    :<Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
                 }                    
+                {token !== null && <Stack.Screen name="Create New Poll" component={CreateNewPoll}/>}
             </Stack.Navigator>
         </NavigationContainer>
     )

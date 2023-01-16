@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         marginBottom:5,
         borderWidth: 1,
         borderRadius: 5,
-        backgroundColor:"green"
+        backgroundColor:"#50C878"
     },
     optionsContainer:{
         flexDirection:"row"
