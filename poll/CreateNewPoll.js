@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-const CreateNewPoll = (props) => {
+const CreateNewPoll = ({setQuestions}) => {
     const [questionText, setQuestionText] = useState("")
     const [optionsText, setOptionsText] = useState([{optionText: "", responses: 0}, {optionText: "", responses: 0}])
     const navigation = useNavigation()
@@ -21,7 +21,7 @@ const CreateNewPoll = (props) => {
     const addPoll = () => {
         let Id = generateIdGenerator()
         if(questionText.length != 0 && optionCheck()){
-            props.route.params.setQuestions(prevState => [{id: Id, questionText: questionText, options: optionsText}, ...prevState])
+            setQuestions(prevState => [{id: Id, questionText: questionText, options: optionsText}, ...prevState])
             navigation.navigate("Home")
         }
     }

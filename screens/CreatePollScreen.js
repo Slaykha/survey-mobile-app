@@ -1,10 +1,10 @@
 import React from 'react'
-import Login from '../Auth/Login'
+import CreateNewPoll from '../poll/CreateNewPoll'
 
-const LoginScreen = () => {
+const CreatePollScreen = (props) => {
     return (
-        <Login />
+        <CreateNewPoll setQuestions={props.route.params.setQuestions}/>
     )
 }
 
-export default LoginScreen
+export default CreatePollScreen
